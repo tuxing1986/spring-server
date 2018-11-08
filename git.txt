@@ -1,0 +1,55 @@
+
+
+==============================
+eclipse for j2ee:https://www.eclipse.org/downloads/packages/release/2018-09/r/eclipse-ide-java-ee-developers
+YEdit
+JRebel
+spring tools 4
+JAutodoc
+
+docker===
+#toolbox docker
+docker run -it -w /tuxingdev1  -p 8089:8089 -v /D/dockertco/code:/tuxingdev1 --name appsub antjohns/tc-image-net
+
+#docker
+docker run -it -w /tuxingdev1  -p 8089:8089 -v /d/dockertco/code:/tuxingdev1 --name appsub antjohns/tc-image-net
+
+
+===mango db client ui=========
+https://downloads.mongodb.com/compass/mongodb-compass-1.15.4-win32-x64.exe
+
+spring mongodb reference:
+https://docs.spring.io/spring-data/data-mongodb/docs/current/reference/html/#mongodb.repositories.queries.json-based
+
+
+swagger codegen:https://github.com/swagger-api/swagger-codegen/releases/tag/v2.3.1
+
+swagger code gen jar:https://oss.sonatype.org/content/repositories/snapshots/io/swagger/swagger-codegen-cli/3.0.0-SNAPSHOT/
+
+java -jar swagger-codegen-cli-3.0.0.jar generate -i swagger.yaml  --api-package com.tc.api --model-package com.tc.model  --group-id com.tc  --artifact-id tc  --artifact-version 0.0.1 -l spring  -o tco18
+
+java -jar swagger-codegen-cli-2.3.1.jar generate \
+  -i swagger.yaml \
+  --api-package com.tc.api \
+  --model-package com.tc.model \
+  --group-id com.tc.tco18 \
+  --artifact-id com-tc-tco \
+  --artifact-version 0.0.1-SNAPSHOT \
+  -l spring \
+  -o tco18
+
+
+https://wx.qq.com/
+
+
+docker network ls
+docker run -it -w /tuxingdev1  -p 8089:8089 -v /d/dockertco/code:/tuxingdev1 --link tc-mysql-tco:mysql.rest --name appsub antjohns/tc-image-net
+docker run -it -w /tuxingdev1  -p 8089:8089 -v /d/dockertco/code:/tuxingdev1 --link 3d2c8ea4418b:mysql --name appsub antjohns/tc-image-net --net docker_default worker 
+https://stackoverflow.com/questions/36489696/cannot-link-to-a-running-container-started-by-docker-compose
+
+
+========spring======
+spring.datasource.url=jdbc:mysql://192.168.99.100:3306/Authorization
+spring.datasource.username=coder
+spring.datasource.password=topcoder
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
