@@ -15,12 +15,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class SimpleAuthenticationEntryPoint implements AuthenticationEntryPoint, Serializable {
-    private static final long serialVersionUID = 8165043738027063631L;
-
     /**
      * The 401 JSON response body.
      */
-    private static final String ERROR_MESSAGE = "{ \"message\": \"Valid credentials are required to access\" }";
+    private static final String ERROR_MESSAGE = "{ \"error\": \"Valid credentials are required to access\" }";
 
     /**
      * The implementation returns 401 error message in JSON format.

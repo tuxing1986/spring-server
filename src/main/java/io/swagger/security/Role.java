@@ -12,8 +12,5 @@ public enum Role {
    */
   RW,
 
-  /**
-   * The Administrator role.
-   */
   Admin
 }

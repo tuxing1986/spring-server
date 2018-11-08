@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SimpleAccessDeniedHandler implements AccessDeniedHandler {
-    private static final String ERROR_MESSAGE = "{ \"message\": \"Access is denied\" }";
+    private static final String ERROR_MESSAGE = "{ \"error\": \"Access is denied\" }";
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
