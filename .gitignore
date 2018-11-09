@@ -6,3 +6,4 @@ swagger-spring.iml
 *.log
 hs_err_pid1233324.log
 .classpath
+/src/main/resources/rebel.xml
