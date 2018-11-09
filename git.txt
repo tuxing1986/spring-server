@@ -29,3 +29,6 @@ java -jar swagger-codegen-cli-2.3.1.jar generate \
 
 http://editor.swagger.io/
 http://jwt.io/
+GET http://localhost:9200/_mapping
+DELETE http://localhost:9200/indexName
+GET http://localhost:9200/indexName/typeName/_search

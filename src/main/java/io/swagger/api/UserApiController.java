@@ -40,6 +40,7 @@ public class UserApiController implements UserApi {
     @Autowired
     private UserRepository userRepo;
 
+    //
     @org.springframework.beans.factory.annotation.Autowired
     public UserApiController(ObjectMapper objectMapper, HttpServletRequest request) {
         this.objectMapper = objectMapper;
@@ -122,7 +123,8 @@ public class UserApiController implements UserApi {
     public ResponseEntity<User> updateUser(@ApiParam(value = "name that need to be updated", required = true) @PathVariable("username") String username,
             @ApiParam(value = "Updated user object", required = true) @Valid @RequestBody User body) {
         String accept = request.getHeader("Accept");
-        body.setBirthDay(new Date());
+        body.setBirthDay(new Date());;
+
         return new ResponseEntity<User>(body, HttpStatus.OK);
     }
 }

@@ -11,6 +11,8 @@ public enum Role {
    * The READ and WRITE role.
    */
   RW,
-
+  /**
+   *
+   */
   Admin
 }

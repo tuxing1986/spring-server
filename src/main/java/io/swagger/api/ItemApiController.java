@@ -4,7 +4,6 @@ import io.swagger.model.ModelApiResponse;
 import io.swagger.model.Pet;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -126,7 +124,7 @@ public class ItemApiController implements ItemApi {
     }
 
     public ResponseEntity<Pet> getPetById(@ApiParam(value = "ID of pet to return", required = true) @PathVariable("petId") Long petId) {
-        String accept = request.getHeader("Accept");
+        String accept = request.getHeader("Accept");;
         /*if (accept != null && accept.contains("application/xml")) {
             try {
                 return new ResponseEntity<Pet>(
@@ -148,7 +146,9 @@ public class ItemApiController implements ItemApi {
                 // return new ResponseEntity<Pet>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }*/
-        
+
+        log.info("info log");
+        log.debug("next item");
         System.out.println(nextSeq.getNextSequence("nextSeq"));
         Pet pet = this.petRepo.findOne(petId);
         try {
@@ -158,6 +158,8 @@ public class ItemApiController implements ItemApi {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        pet.setName("test item test1222");
+        log.debug("go ahead");
         return new ResponseEntity<Pet>(pet, HttpStatus.OK);
     }
 

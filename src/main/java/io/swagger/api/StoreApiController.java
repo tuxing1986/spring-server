@@ -103,7 +103,7 @@ public class StoreApiController implements StoreApi {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<Order>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
-        }
+        }////
         return new ResponseEntity<Order>(HttpStatus.NOT_IMPLEMENTED);
     }
 }

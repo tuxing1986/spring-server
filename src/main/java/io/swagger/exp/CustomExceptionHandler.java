@@ -32,8 +32,7 @@ import io.swagger.api.NotFoundException;
  */
 //@RestControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
-    
-    /** The message source. */
+
     @Autowired
     private MessageSource messageSource;
 
