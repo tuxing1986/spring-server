@@ -2,6 +2,7 @@ package io.swagger.api;
 
 import io.swagger.model.ModelApiResponse;
 import io.swagger.model.Pet;
+import io.swagger.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -58,7 +60,7 @@ public class ItemApiController implements ItemApi {
     
     public ResponseEntity<Void> addPets(@ApiParam(value = "Pet object that needs to be added to the store", required = true) @Valid @RequestBody List<Pet> body) {
         String accept = request.getHeader("Accept");
-        petRepo.save(body);
+        //petRepo.save(body);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
@@ -123,7 +125,10 @@ public class ItemApiController implements ItemApi {
         return new ResponseEntity<List<Pet>>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Pet> getPetById(@ApiParam(value = "ID of pet to return", required = true) @PathVariable("petId") Long petId) {
+    @Autowired
+    UserService userService;
+    @Transactional(readOnly = true)
+    public ResponseEntity<List<Pet>> getPetById(@ApiParam(value = "ID of pet to return", required = true) @PathVariable("petId") Long petId) {
         String accept = request.getHeader("Accept");;
         /*if (accept != null && accept.contains("application/xml")) {
             try {
@@ -150,7 +155,8 @@ public class ItemApiController implements ItemApi {
         log.info("info log");
         log.debug("next item");
         System.out.println(nextSeq.getNextSequence("nextSeq"));
-        Pet pet = this.petRepo.findOne(petId);
+        Pet pet = null;//this.petRepo.findById(petId).get();
+        
         try {
             log.debug(objectMapper.writeValueAsString(pet));
             System.out.println(objectMapper.writeValueAsString(pet));
@@ -158,9 +164,18 @@ public class ItemApiController implements ItemApi {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        pet.setName("test item test1222");
+        //pet.setName("test item test1222");
         log.debug("go ahead");
-        return new ResponseEntity<Pet>(pet, HttpStatus.OK);
+        
+        try {
+            return new ResponseEntity<List<Pet>>(userService.searchPets(), HttpStatus.OK);
+            //log.debug(objectMapper.writeValueAsString(pet));
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            throw e;
+        }
+        //return new ResponseEntity<Pet>(pet, HttpStatus.OK);
     }
 
     public ResponseEntity<Void> updatePet(@ApiParam(value = "Pet object that needs to be added to the store", required = true) @Valid @RequestBody Pet body) {
@@ -193,6 +208,7 @@ public class ItemApiController implements ItemApi {
         }*/
         System.out.println(new String(file.getBytes()));
         file.transferTo(new java.io.File("D:/test.zip"));
+        //mvn exec:java -D"exec.mainClass"="com.example.Main"
         return new ResponseEntity<ModelApiResponse>(HttpStatus.NOT_IMPLEMENTED);
     }
 }

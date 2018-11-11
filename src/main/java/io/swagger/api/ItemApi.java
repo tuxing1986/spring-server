@@ -66,7 +66,7 @@ public interface ItemApi {
     @ApiResponses(value = { @ApiResponse(code = 200, message = "successful operation", response = Pet.class), @ApiResponse(code = 400, message = "Invalid ID supplied"),
             @ApiResponse(code = 404, message = "Pet not found") })
     @RequestMapping(value = "/pet/{petId}", produces = { "application/xml", "application/json" }, method = RequestMethod.GET)
-    ResponseEntity<Pet> getPetById(@ApiParam(value = "ID of pet to return", required = true) @PathVariable("petId") Long petId);
+    ResponseEntity<List<Pet>> getPetById(@ApiParam(value = "ID of pet to return", required = true) @PathVariable("petId") Long petId);
 
     @ApiOperation(value = "Update an existing pet", nickname = "updatePet", notes = "", authorizations = { @Authorization(value = "petstore_auth", scopes = {
             @AuthorizationScope(scope = "write:pets", description = "modify pets in your account"), @AuthorizationScope(scope = "read:pets", description = "read your pets") }) }, tags = { "pet", })

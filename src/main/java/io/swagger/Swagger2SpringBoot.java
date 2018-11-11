@@ -11,7 +11,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-@ComponentScan(basePackages = { "io.swagger", "io.swagger.api", "io.swagger.model", "io.swagger.exp", "io.swagger.configuration" })
+@ComponentScan(basePackages = { "io.swagger", "io.swagger.api", "io.swagger.model", "io.swagger.service", "io.swagger.exp", "io.swagger.configuration" })
 @EnableMongoRepositories(basePackages = { "io.swagger.api.db" })
 //@ImportResource("classpath:applicationContext.xml")
 public class Swagger2SpringBoot implements CommandLineRunner {
