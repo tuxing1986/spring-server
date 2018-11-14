@@ -1,0 +1,46 @@
+version: '2'
+services:
+  database:
+    image: mongo
+    environment:
+      MONGO_INITDB_DATABASE: easy-notes
+    ports:
+      - "27017:27017"
+  mysql:
+    image: "appiriodevops/tc-identity-mysql:0.1.0"
+    container_name: "tc-mysqld-tco"
+    ports:
+     - "3306:3306"
+    privileged: true
+    environment:
+     - MYSQL_DATABASE=Authorization
+     - MYSQL_USER=coder
+     - MYSQL_PASSWORD=topcoder
+     - MYSQL_ROOT_PASSWORD=topcoder
+    volumes:
+     - .:/data
+  appsub:
+    image: "antjohns/tc-image-net"
+    command: 
+      - /bin/sh
+      - -c
+      - |
+          mvn clean package 
+          mvn exec:java -Dstart-class=io.swagger.Swagger2SpringBoot
+    working_dir: /tuxingtco
+    depends_on: [mysql]
+    links:
+      - mysql:mysql
+    ports:
+      - "8089:8089"
+    volumes:
+     - ./code:/tuxingtco
+  test:
+    build: ./docker
+    depends_on: [appsub]
+    links:
+      - appsub
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./output:/output
